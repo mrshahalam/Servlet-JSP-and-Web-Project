@@ -1,0 +1,56 @@
+-----------------------------index.html----------------------------------------------------
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Shah alam</title>
+</head>
+<body>
+   <form action="add" method="Post">
+   Enter 1st number : <input type="text" name="num1"> <br>
+   Enter 2st number : <input type="text" name="num2"> <br>
+   <input type="submit">
+  
+   
+   </form> 
+</body>
+</html>
+-----------------------------------------------AddServlet.java----------------------------------------------------
+package myfirstproject;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+public class AddServlet extends HttpServlet
+{
+
+	public void  doPost(HttpServletRequest req,HttpServletResponse res) throws IOException
+	{
+		int i = Integer.parseInt(req.getParameter("num1"));
+		int j = Integer.parseInt(req.getParameter("num2"));
+		int k= i+j;
+		PrintWriter  out  = res.getWriter();
+		out.print("the result is :"+k);
+	}
+	
+}
+----------------------------------------------web.xml-------------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  
+  <servlet>
+  <servlet-name>abc</servlet-name>
+  <servlet-class>myfirstproject.AddServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>abc</servlet-name>
+   <url-pattern>/add</url-pattern>
+  </servlet-mapping>
+  
+  
+</web-app>
